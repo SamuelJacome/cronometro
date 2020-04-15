@@ -15,9 +15,34 @@ export default class cronometro extends Component {
   constructor(props){
     super(props);
     this.state = {
-      numero: 0
+      numero: 0,
+      botao: 'VAI',
+
+    }
+
+    this.timer =  null;
+    this.vai = this.vai.bind(this);
+    this.limpar = this.limpar.bind(this);
+  }
+
+  vai(){
+
+    if(this.timer != null){
+      clearInterval(this.timer)
+      this.timer = null;
+      this.setState({botao: 'VAI'});
+    }
+    else{
+    this.timer = setInterval( () => {
+      this.setState({numero: this.state.numero + 0.1})
+    }, 100);
+    this.setState({botao: 'PARAR'});
     }
   }
+  limpar(){
+
+  }
+
   render() {
     return (
     <View style = {styles.container}>
@@ -30,11 +55,11 @@ export default class cronometro extends Component {
       
       
       <View style = {styles.btnArea}>
-        <TouchableOpacity style = {styles.btn}>
-          <Text style = {styles.btnTexto}>GO</Text>  
+        <TouchableOpacity style = {styles.btn} onPress = {this.vai}>
+          <Text style = {styles.btnTexto}>{this.state.botao}</Text>  
         </TouchableOpacity>      
 
-         <TouchableOpacity style = {styles.btn}>
+         <TouchableOpacity style = {styles.btn} onPress = {this.limpar}>
           <Text style = {styles.btnTexto}>Limpar</Text>  
         </TouchableOpacity>   
       </View> 
