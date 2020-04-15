@@ -11,6 +11,13 @@ import {
 // import { Container } from './styles';
 
 export default class cronometro extends Component {
+
+  constructor(props){
+    super(props);
+    this.state = {
+      numero: 0
+    }
+  }
   render() {
     return (
     <View style = {styles.container}>
@@ -19,7 +26,7 @@ export default class cronometro extends Component {
        style = {styles.cronometro}
        /> 
 
-       <Text style={styles.timer}>0.0</Text>
+       <Text style={styles.timer}>{this.state.numero.toFixed(2)}</Text>
       
       
       <View style = {styles.btnArea}>
@@ -51,13 +58,29 @@ const styles = StyleSheet.create({
     marginTop: -160,
     color: '#FFF',
     fontSize: 65,
+    fontWeight: "bold",
 
   },
 
   btnArea:{
     flexDirection: 'row',
-    justifyContent: "space-between",
-   
+    marginTop: 70,
+  },
+
+  btn:{
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#FFF',
+    height: 40,
+    margin: 17,
+    borderRadius: 9,
+  },
+
+  btnTexto:{
+    fontSize: 20,
+    fontWeight: "bold",
+    color: '#00aeef'
   }
 
 })
