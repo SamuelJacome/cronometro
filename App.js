@@ -17,6 +17,7 @@ export default class cronometro extends Component {
     this.state = {
       numero: 0,
       botao: 'VAI',
+      ultimo: null,
 
     }
 
@@ -40,6 +41,12 @@ export default class cronometro extends Component {
     }
   }
   limpar(){
+    if(this.timer != null){
+      clearInterval(this.timer);
+      this.timer = null;
+    }
+    this.setState({numero: 0, botao: 'VAI'});
+
 
   }
 
